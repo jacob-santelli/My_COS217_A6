@@ -1,7 +1,7 @@
 What is your name?
 D is your grade.
 Thank you, Jacob Santelli and Josh Yang.
-   sub     sp, sp, #0x50
+   0x400780 <readString>:       sub     sp, sp, #0x50
    0x400784 <readString+4>:     stp     x19, x20, [sp]
    0x400788 <readString+8>:     stp     x21, x30, [sp, #16]
    0x40078c <readString+12>:    mov     x19, #0x0                       // #0
