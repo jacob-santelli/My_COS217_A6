@@ -109,7 +109,7 @@ unsigned int MiniAssembler_b(unsigned long ulAddr,
 
    /* displacement divided by 4 */
    uiDisp = (ulAddr - ulAddrOfThisInstr);
-   uiDisp = uiDisp >> 2;
+   uiDisp >>= uiDisp;
 
    setField(uiDisp, 0, &uiInstr, 0, 26);
    return uiInstr;
