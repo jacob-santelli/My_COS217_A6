@@ -117,15 +117,15 @@ Jacob Santelli and Joshua Yang
 
 // section 2.3
    0x420058: 'J'
-   0x420060: 'a'
-   0x420068: 'c'
-   0x420070: 'o'
-   0x420078: 'b'
-   0x420080: '\0'
-   0x420088: adr x0, grade (in machine language)
-   0x420090: mov x1, 'A' (in machine language)
-   0x420098: strb x1, [x0] (in machine language)
-   0x420100: b 0x400864 (in machine language)
+   0x42005c: 'a'
+   0x420060: 'c'
+   0x420064: 'o'
+   0x420068: 'b'
+   0x42006c: '\0'
+   0x420070: adr x0, grade (in machine language)
+   0x420074: mov x1, 'A' (in machine language)
+   0x420078: strb x1, [x0] (in machine language)
+   0x42007c: b 0x400864 (in machine language)
    ... rest of name is filler to overflow buf
 
 // section 2.4
