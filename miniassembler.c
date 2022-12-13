@@ -19,7 +19,14 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
                      unsigned int *puiDest, unsigned int uiDestStartBit,
                      unsigned int uiNumBits)
 {
-   /* Your code here */
+   int i;
+   unsigned int tempSrc;
+   for (i = 0; i < uiNumBits; i++) {
+      tempSrc = uiSrc;
+      uiSrc & 2 ^ i;
+      puiDest xor with uiSrc;
+   }
+
 
 }
 
@@ -77,13 +84,7 @@ unsigned int MiniAssembler_strb(unsigned int uiFromReg,
 
    /* uiToReg inserted in instruction */
    setField(uiToReg, 0, &uiInstr, 5, 5);
-
-   /* displacement to be split into immlo and immhi and inserted */
-   uiDisp = (unsigned int)(ulAddr - ulAddrOfThisInstr);
-
-   setField(uiDisp, 0, &uiInstr, 29, 2);
-   setField(uiDisp, 2, &uiInstr, 5, 19);
-
+   
    return uiInstr;
 }
 
