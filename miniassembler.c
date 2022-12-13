@@ -19,25 +19,49 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
                      unsigned int *puiDest, unsigned int uiDestStartBit,
                      unsigned int uiNumBits)
 {
-   int i;
-   unsigned int tempSrc;
-   unsigned int bit;
-   unsigned int *tempDest;
+   unsigned int i;
+   unsigned int bits;
+   bits = 0;
 
-   tempDest = puiDest;
-   tempDest += (31 - uiDestStartBit);
+   if (uiNumBits != 0) {
+      bits = 1;
+      for(i = 0; i < uiNumBits; i++) {
+         bits <<= 1;
+         bits++;
+      }
+   }
+   
+   bits <<= uiSrcStartBit;
+   bits &= uiSrc;
 
-   for (i = 0; i < uiNumBits; i++) {
+   bits >>= uiSrcStartBit;
+
+   bits <<= uiDestStartBit;
+
+   *puiDest = *puiDest | bits;
+
+/*
+   uiSrc = uiSrc >> 31 - uiNumBits;
+
+   tempDest = *puiDest;
+   tempDest = tempDest >> uiDestStartBit;
+
+
+   for (i = 31 - uiDestStartBit; i > 31 - uiDestStartBit - uiNumBits; i--) {
       tempSrc = uiSrc;
 
-      /* create an unsigned long with only the i'th bit set to one */
-      bit = (unsigned long) pow(2, i);
+      create an unsigned long with only the i'th bit set to one
+      bit = 1;
+      bit = bit << i;
 
-      /* make sure that bit is also set to one in uiSrc */
+       make sure that bit is also set to one in uiSrc
       tempSrc = tempSrc & bit;
 
-      *tempDest ^ uiSrc;
+      tempDest = tempDest | tempSrc;
    }
+   tempDest = tempDest << uiDestStartBit;
+   *puiDest = *puiDest | tempDest;
+   */
 }
 
 /*--------------------------------------------------------------------*/
@@ -84,7 +108,6 @@ unsigned int MiniAssembler_strb(unsigned int uiFromReg,
    unsigned int uiToReg)
 {
    unsigned int uiInstr;
-   unsigned int uiDisp;
 
    /* Base Instruction Code */
    uiInstr = 0x39000000;
@@ -103,9 +126,6 @@ unsigned int MiniAssembler_strb(unsigned int uiFromReg,
 unsigned int MiniAssembler_b(unsigned long ulAddr,
    unsigned long ulAddrOfThisInstr)
 {
-   unsigned int MiniAssembler_b(unsigned long ulAddr,
-   unsigned long ulAddrOfThisInstr)
-{
    unsigned int uiInstr;
    unsigned int uiDisp;
 
@@ -120,7 +140,5 @@ unsigned int MiniAssembler_b(unsigned long ulAddr,
 
    setField(uiDisp, 0, &uiInstr, 0, 26);
    return uiInstr;
-
-}
 
 }
