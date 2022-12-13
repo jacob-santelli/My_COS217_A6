@@ -2,7 +2,7 @@
 
 int main(void) {
     FILE *psFile;
-    unsigned int uiAddress;
+    unsigned long ulAddress;
     char* name = "Jacob";
     int i;
 
@@ -21,9 +21,9 @@ int main(void) {
         fprintf(psFile, "%c", i);
     }
    
-    uiAddress = 0x400858;
+    ulAddress = 0x400878;
 
-    fwrite(&uiAddress, sizeof(unsigned int), 1, psFile);
+    fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
     fclose(psFile);
     return 0;
 }
