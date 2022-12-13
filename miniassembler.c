@@ -46,7 +46,7 @@ unsigned int MiniAssembler_mov(unsigned int uiReg, int iImmed)
    unsigned int uiInstr;
 
    /* Base Instruction Code */
-   uiInstr = 0xD2800000;
+   uiInstr = 0x52800000;
    
    setField(uiReg, 0, &uiInstr, 0, 5);
    setField(iImmed, 0, &uiInstr, 5, 16);
@@ -102,16 +102,14 @@ unsigned int MiniAssembler_b(unsigned long ulAddr,
    unsigned long ulAddrOfThisInstr)
 {
    unsigned int uiInstr;
-   unsigned int uiDisp;
+   int uiDisp;
 
    /* Base Instruction Code */
    uiInstr = 0x14000000;
 
-   /* displacement to be split into immlo and immhi and inserted */
-   uiDisp = (unsigned int)(ulAddr - ulAddrOfThisInstr);
-   uiDisp = uiDisp >> 2;
-   uiDisp = ~uiDisp;
-   uiDisp++;
+   /* displacement divided by 4 */
+   uiDisp = (ulAddr - ulAddrOfThisInstr);
+   uiDisp >>= uiDisp;
 
    setField(uiDisp, 0, &uiInstr, 0, 26);
    return uiInstr;
