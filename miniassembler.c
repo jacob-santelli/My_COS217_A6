@@ -21,13 +21,23 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
 {
    int i;
    unsigned int tempSrc;
+   unsigned int bit;
+   unsigned int *tempDest;
+
+   tempDest = puiDest;
+   tempDest += (31 - uiDestStartBit);
+
    for (i = 0; i < uiNumBits; i++) {
       tempSrc = uiSrc;
-      uiSrc & 2 ^ i;
-      puiDest xor with uiSrc;
+
+      /* create an unsigned long with only the i'th bit set to one */
+      bit = (unsigned long) pow(2, i);
+
+      /* make sure that bit is also set to one in uiSrc */
+      tempSrc = tempSrc & bit;
+
+      *tempDest ^ uiSrc;
    }
-
-
 }
 
 /*--------------------------------------------------------------------*/
@@ -93,6 +103,24 @@ unsigned int MiniAssembler_strb(unsigned int uiFromReg,
 unsigned int MiniAssembler_b(unsigned long ulAddr,
    unsigned long ulAddrOfThisInstr)
 {
-   /* Your code here */
+   unsigned int MiniAssembler_b(unsigned long ulAddr,
+   unsigned long ulAddrOfThisInstr)
+{
+   unsigned int uiInstr;
+   unsigned int uiDisp;
+
+   /* Base Instruction Code */
+   uiInstr = 0x14000000;
+
+   /* displacement to be split into immlo and immhi and inserted */
+   uiDisp = (unsigned int)(ulAddr - ulAddrOfThisInstr);
+   uiDisp = uiDisp >> 2;
+   uiDisp = ~uiDisp;
+   uiDisp++;
+
+   setField(uiDisp, 0, &uiInstr, 0, 26);
+   return uiInstr;
+
+}
 
 }
