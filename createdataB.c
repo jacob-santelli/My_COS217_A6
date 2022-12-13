@@ -27,4 +27,3 @@ int main(void) {
     fclose(psFile);
     return 0;
 }
-
