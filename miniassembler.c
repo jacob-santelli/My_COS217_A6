@@ -21,14 +21,12 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
 {
    unsigned int i;
    unsigned int bits;
-   bits = 0;
+   assert(uiNumBits > 0);
 
-   if (uiNumBits != 0) {
-      bits = 1;
-      for(i = 0; i < uiNumBits; i++) {
-         bits <<= 1;
-         bits++;
-      }
+   bits = 1;
+   for(i = 0; i < uiNumBits - 1; i++) {
+      bits <<= 1;
+      bits++;
    }
    
    bits <<= uiSrcStartBit;
@@ -39,29 +37,6 @@ static void setField(unsigned int uiSrc, unsigned int uiSrcStartBit,
    bits <<= uiDestStartBit;
 
    *puiDest = *puiDest | bits;
-
-/*
-   uiSrc = uiSrc >> 31 - uiNumBits;
-
-   tempDest = *puiDest;
-   tempDest = tempDest >> uiDestStartBit;
-
-
-   for (i = 31 - uiDestStartBit; i > 31 - uiDestStartBit - uiNumBits; i--) {
-      tempSrc = uiSrc;
-
-      create an unsigned long with only the i'th bit set to one
-      bit = 1;
-      bit = bit << i;
-
-       make sure that bit is also set to one in uiSrc
-      tempSrc = tempSrc & bit;
-
-      tempDest = tempDest | tempSrc;
-   }
-   tempDest = tempDest << uiDestStartBit;
-   *puiDest = *puiDest | tempDest;
-   */
 }
 
 /*--------------------------------------------------------------------*/
