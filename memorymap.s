@@ -1,6 +1,6 @@
-What is your name?
-D is your grade.
-Thank you, Jacob Santelli and Josh Yang.
+Jacob Santelli and Joshua Yang
+
+// section 2.1
 
    // Prolog
    0x400780 <readString>:       sub     sp, sp, #0x50
@@ -65,7 +65,6 @@ Thank you, Jacob Santelli and Josh Yang.
    0x400818 <getName+28>:       add     sp, sp, #0x10
    0x40081c <getName+32>:       ret
 
-
    // Prolog
    0x400820 <main>:     sub     sp, sp, #0x10
    0x400824 <main+4>:   stp     x19, x30, [sp]
@@ -114,26 +113,34 @@ Thank you, Jacob Santelli and Josh Yang.
    0x400898 <main+120>: ret
 
 // section 2.2
-0x420044  0x00000044  grade   
+   0x420044  0x00000044  grade   
 
 // section 2.3
+   0x420058: 'J'
+   0x420060: 'a'
+   0x420068: 'c'
+   0x420070: 'o'
+   0x420078: 'b'
+   0x420080: '\0'
+   0x420088: adr x0, grade (in machine language)
+   0x420090: mov x1, 'A' (in machine language)
+   0x420098: strb x1, [x0] (in machine language)
+   0x420100: b 0x400864 (in machine language)
+   ... rest of name is filler to overflow buf
 
-COME BACK TO THIS
-// $1 = (<data variable, no debug info> *) 0x420058 <name>
-
-
-Offset | Description 
-0      | X19
-8      | X20
-16     | X21
-24     | X30
-32     | buf
-40     | buf
-48     | buf
-56     | buf
-64     | buf
-72     | buf
-80     | X30
+// section 2.4
+   Offset | Description 
+   0      | X19 from getName()
+   8      | X20 from getName()
+   16     | X21 from getName()
+   24     | X30 from getName()
+   32     | buf
+   40     | buf
+   48     | buf
+   56     | buf
+   64     | buf
+   72     | buf
+   80     | X30
 
 
 
