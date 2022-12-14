@@ -215,13 +215,12 @@ Jacob Santelli and Joshua Yang
    0x420086: filler to overrun buffer
    0x420087: filler to overrun buffer
    
-
 // section 2.4: Stack
    Offset | Description 
-   0      | X19 from getName()
-   8      | X20 from getName()
-   16     | X21 from getName()
-   24     | X30 from getName()
+   0      | X19
+   8      | X20
+   16     | X21
+   24     | X30
    32     | buf
    40     | buf
    48     | buf
