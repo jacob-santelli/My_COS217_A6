@@ -1,6 +1,6 @@
 Jacob Santelli and Joshua Yang
 
-// section 2.1
+// section 2.1: text
 
    // Prolog
    0x400780 <readString>:       sub     sp, sp, #0x50
@@ -112,10 +112,10 @@ Jacob Santelli and Joshua Yang
    0x400894 <main+116>: add     sp, sp, #0x10
    0x400898 <main+120>: ret
 
-// section 2.2
+// section 2.2: data
    0x420044  0x00000044  grade   
 
-// section 2.3
+// section 2.3: BSS during A attack
    0x420058: 'J'
    0x420059: 'a'
    0x42005a: 'c'
@@ -165,7 +165,7 @@ Jacob Santelli and Joshua Yang
    0x420086: filler to overrun buffer
    0x420087: filler to overrun buffer
 
-// section 2.3.5
+// section 2.3.5: BSS during A+ attack
    0x420058: 'J'
    0x420059: 'o'
    0x42005a: 's'
@@ -216,7 +216,7 @@ Jacob Santelli and Joshua Yang
    0x420087: filler to overrun buffer
    
 
-// section 2.4
+// section 2.4: Stack
    Offset | Description 
    0      | X19 from getName()
    8      | X20 from getName()
