@@ -131,5 +131,4 @@ unsigned int MiniAssembler_bl(unsigned long ulAddr,
 
    setField(uiDisp, 0, &uiInstr, 0, 26);
    return uiInstr;
-
 }

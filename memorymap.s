@@ -128,7 +128,7 @@ Jacob Santelli and Joshua Yang
    0x420061:
    0x420062:
    0x420063:
-   0x420064: mov x1, 'A' (in machine language)
+   0x420064: mov w1, 'A' (in machine language)
    0x420065:
    0x420066:
    0x420067:
@@ -138,21 +138,47 @@ Jacob Santelli and Joshua Yang
    0x42006b:
    0x42006c: b 0x400864 (in machine language)
    0x42006d:
+   0x42006e:
+   0x42006f:
+   0x420070: filler to overrun buffer
+   0x420071: filler to overrun buffer
+   0x420072: filler to overrun buffer
+   0x420073: filler to overrun buffer
+   0x420074: filler to overrun buffer
+   0x420075: filler to overrun buffer
+   0x420076: filler to overrun buffer
+   0x420077: filler to overrun buffer
+   0x420078: filler to overrun buffer
+   0x420079: filler to overrun buffer
+   0x42007a: filler to overrun buffer
+   0x42007b: filler to overrun buffer
+   0x42007c: filler to overrun buffer
+   0x42007d: filler to overrun buffer
+   0x42007e: filler to overrun buffer
+   0x42007f: filler to overrun buffer
+   0x420080: filler to overrun buffer
+   0x420081: filler to overrun buffer
+   0x420082: filler to overrun buffer
+   0x420083: filler to overrun buffer
+   0x420084: filler to overrun buffer
+   0x420085: filler to overrun buffer
+   0x420086: filler to overrun buffer
+   0x420087: filler to overrun buffer
 
 // section 2.3.5
    0x420058: 'J'
-   0x420059: 'a'
-   0x42005a: 'c'
-   0x42005b: 'o'
-   0x42005c: 'b'
-   0x42005d: '\0'
-   0x42005e: '\0'
+   0x420059: 'o'
+   0x42005a: 's'
+   0x42005b: 'h'
+   0x42005c: '\0'
+   0x42005d: 'A'
+   0x42005e: '+'
    0x42005f: '\0'
    0x420060: adr x0, grade (in machine language)
    0x420061:
    0x420062:
    0x420063:
-   0x420064: mov x1, '\0' (in machine language)
+   0x420064: mov w1, '\0' (in machine language)
    0x420065:
    0x420066:
    0x420067:
@@ -160,7 +186,7 @@ Jacob Santelli and Joshua Yang
    0x420069:
    0x42006a:
    0x42006b:
-   0x42006c: mov x0, 'Z' (in machine language)
+   0x42006c: adr x0, "A+" (in machine language)
    0x42006d:
    0x42006e:
    0x42006f:
@@ -169,7 +195,25 @@ Jacob Santelli and Joshua Yang
    0x420072:
    0x420073:
    0x420074: b 0x400864 (in machine language)
-
+   0x420075:
+   0x420076:
+   0x420077:
+   0x420078: filler to overrun buffer
+   0x420079: filler to overrun buffer
+   0x42007a: filler to overrun buffer
+   0x42007b: filler to overrun buffer
+   0x42007c: filler to overrun buffer
+   0x42007d: filler to overrun buffer
+   0x42007e: filler to overrun buffer
+   0x42007f: filler to overrun buffer
+   0x420080: filler to overrun buffer
+   0x420081: filler to overrun buffer
+   0x420082: filler to overrun buffer
+   0x420083: filler to overrun buffer
+   0x420084: filler to overrun buffer
+   0x420085: filler to overrun buffer
+   0x420086: filler to overrun buffer
+   0x420087: filler to overrun buffer
    
 
 // section 2.4
