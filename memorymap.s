@@ -138,6 +138,38 @@ Jacob Santelli and Joshua Yang
    0x42006b:
    0x42006c: b 0x400864 (in machine language)
    0x42006d:
+
+// section 2.3.5
+   0x420058: 'J'
+   0x420059: 'a'
+   0x42005a: 'c'
+   0x42005b: 'o'
+   0x42005c: 'b'
+   0x42005d: '\0'
+   0x42005e: '\0'
+   0x42005f: '\0'
+   0x420060: adr x0, grade (in machine language)
+   0x420061:
+   0x420062:
+   0x420063:
+   0x420064: mov x1, '\0' (in machine language)
+   0x420065:
+   0x420066:
+   0x420067:
+   0x420068: strb x1, [x0] (in machine language)
+   0x420069:
+   0x42006a:
+   0x42006b:
+   0x42006c: mov x0, 'Z' (in machine language)
+   0x42006d:
+   0x42006e:
+   0x42006f:
+   0x420070: bl 0x400600 (in machine language)
+   0x420071:
+   0x420072:
+   0x420073:
+   0x420074: b 0x400864 (in machine language)
+
    
 
 // section 2.4
