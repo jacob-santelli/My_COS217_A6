@@ -1,19 +1,19 @@
-What is your name?
-D is your grade.
-Thank you, Jacob Santelli and Josh Yang.
+Jacob Santelli and Joshua Yang
+
+// section 2.1: text
 
    // Prolog
    0x400780 <readString>:       sub     sp, sp, #0x50
    0x400784 <readString+4>:     stp     x19, x20, [sp]
    0x400788 <readString+8>:     stp     x21, x30, [sp, #16]
+
+   // First loop setup
    0x40078c <readString+12>:    mov     x19, #0x0                       // #0
    0x400790 <readString+16>:    adrp    x21, 0x420000 <__libc_start_main@got.plt>
 
-   // First loop setup
+   // First loop
    0x400794 <readString+20>:    mov     w20, w19
    0x400798 <readString+24>:    ldr     x0, [x21, #72]
-
-   // First loop
    0x40079c <readString+28>:    bl      0x4005b0 <fgetc@plt>
    0x4007a0 <readString+32>:    cmp     w0, #0xa
    0x4007a4 <readString+36>:    b.eq    0x4007c0 <readString+64>  // b.none
@@ -65,7 +65,6 @@ Thank you, Jacob Santelli and Josh Yang.
    0x400818 <getName+28>:       add     sp, sp, #0x10
    0x40081c <getName+32>:       ret
 
-
    // Prolog
    0x400820 <main>:     sub     sp, sp, #0x10
    0x400824 <main+4>:   stp     x19, x30, [sp]
@@ -112,3 +111,126 @@ Thank you, Jacob Santelli and Josh Yang.
    0x400890 <main+112>: ldp     x19, x30, [sp]
    0x400894 <main+116>: add     sp, sp, #0x10
    0x400898 <main+120>: ret
+
+// section 2.2: data
+   0x420044  0x00000044  grade   
+
+// section 2.3: BSS during A attack
+   0x420058: 'J'
+   0x420059: 'a'
+   0x42005a: 'c'
+   0x42005b: 'o'
+   0x42005c: 'b'
+   0x42005d: '\0'
+   0x42005e: '\0'
+   0x42005f: '\0'
+   0x420060: adr x0, grade (in machine language)
+   0x420061:
+   0x420062:
+   0x420063:
+   0x420064: mov w1, 'A' (in machine language)
+   0x420065:
+   0x420066:
+   0x420067:
+   0x420068: strb x1, [x0] (in machine language)
+   0x420069:
+   0x42006a:
+   0x42006b:
+   0x42006c: b 0x400864 (in machine language)
+   0x42006d:
+   0x42006e:
+   0x42006f:
+   0x420070: filler to overrun buffer
+   0x420071: filler to overrun buffer
+   0x420072: filler to overrun buffer
+   0x420073: filler to overrun buffer
+   0x420074: filler to overrun buffer
+   0x420075: filler to overrun buffer
+   0x420076: filler to overrun buffer
+   0x420077: filler to overrun buffer
+   0x420078: filler to overrun buffer
+   0x420079: filler to overrun buffer
+   0x42007a: filler to overrun buffer
+   0x42007b: filler to overrun buffer
+   0x42007c: filler to overrun buffer
+   0x42007d: filler to overrun buffer
+   0x42007e: filler to overrun buffer
+   0x42007f: filler to overrun buffer
+   0x420080: filler to overrun buffer
+   0x420081: filler to overrun buffer
+   0x420082: filler to overrun buffer
+   0x420083: filler to overrun buffer
+   0x420084: filler to overrun buffer
+   0x420085: filler to overrun buffer
+   0x420086: filler to overrun buffer
+   0x420087: filler to overrun buffer
+
+// section 2.3.5: BSS during A+ attack
+   0x420058: 'J'
+   0x420059: 'o'
+   0x42005a: 's'
+   0x42005b: 'h'
+   0x42005c: '\0'
+   0x42005d: 'A'
+   0x42005e: '+'
+   0x42005f: '\0'
+   0x420060: adr x0, grade (in machine language)
+   0x420061:
+   0x420062:
+   0x420063:
+   0x420064: mov w1, '\0' (in machine language)
+   0x420065:
+   0x420066:
+   0x420067:
+   0x420068: strb x1, [x0] (in machine language)
+   0x420069:
+   0x42006a:
+   0x42006b:
+   0x42006c: adr x0, "A+" (in machine language)
+   0x42006d:
+   0x42006e:
+   0x42006f:
+   0x420070: bl 0x400600 (in machine language)
+   0x420071:
+   0x420072:
+   0x420073:
+   0x420074: b 0x400864 (in machine language)
+   0x420075:
+   0x420076:
+   0x420077:
+   0x420078: filler to overrun buffer
+   0x420079: filler to overrun buffer
+   0x42007a: filler to overrun buffer
+   0x42007b: filler to overrun buffer
+   0x42007c: filler to overrun buffer
+   0x42007d: filler to overrun buffer
+   0x42007e: filler to overrun buffer
+   0x42007f: filler to overrun buffer
+   0x420080: filler to overrun buffer
+   0x420081: filler to overrun buffer
+   0x420082: filler to overrun buffer
+   0x420083: filler to overrun buffer
+   0x420084: filler to overrun buffer
+   0x420085: filler to overrun buffer
+   0x420086: filler to overrun buffer
+   0x420087: filler to overrun buffer
+   
+
+// section 2.4: Stack
+   Offset | Description 
+   0      | X19 from getName()
+   8      | X20 from getName()
+   16     | X21 from getName()
+   24     | X30 from getName()
+   32     | buf
+   40     | buf
+   48     | buf
+   56     | buf
+   64     | buf
+   72     | buf
+   80     | X30
+
+
+
+
+
